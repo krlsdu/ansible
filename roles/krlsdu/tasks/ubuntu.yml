@@ -1,0 +1,55 @@
+
+# roles/example/tasks/ubuntu.yml
+- name: Instalando vim
+  apt:
+    name: "vim"
+    state: present
+
+- name: Instalando git
+  apt:
+    name: "git"
+    state: present
+
+- name: Instalando git-extras
+  apt:
+    name: "git-extras"
+    state: present
+
+- name: Instalando zhs
+  apt:
+    name: "zsh"
+    state: present
+
+- name: Instalando vlc
+  apt:
+    name: "vlc"
+    state: present
+
+- name: Add ssh-key to user
+  user:
+    name: krlsdu
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+
+- name: Authorize key with GitHub
+  local_action:
+    module: github_key
+    name: krlsdu-ubuntu-17.10
+    token:  4a32b2b8e2f6bf7259b3160b39520f385ed11a85
+    pubkey: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
+
+- name: Config git user.email
+  git_config:
+    name: user.email
+    repo: ansible
+    scope: local
+    value: krlsdu@gmail.com
+
+- name: Config git user.name
+  git_config:
+    name: user.name
+    repo: ansible
+    scope: local
+    value: krlsdu
+

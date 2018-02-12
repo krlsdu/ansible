@@ -1,0 +1,4 @@
+# roles/example/tasks/main.yml
+ - name: Make tasks for ubuntu.
+   import_tasks: ubuntu.yml
+   when: ansible_distribution =='Ubuntu'
