@@ -21,4 +21,4 @@ script:
 
   - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v /etc/ansible/roles/krlsdu/site.yml --syntax-check'
 
-  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -v -i /etc/ansible/roles/krlsdu/inventory.yml /etc/ansible/roles/krlsdu/site.yml'
+  - 'sudo docker exec "$(cat ${container_id})" env ANSIBLE_FORCE_COLOR=1 ansible-playbook -i /etc/ansible/roles/krlsdu/inventory.yml /etc/ansible/roles/krlsdu/site.yml'
